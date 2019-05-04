@@ -1,15 +1,66 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
-    Welcome to {{ title }}!
+    Let's fix your budget
   </h1>
 </div>
 
-<button (click)="getDataFromService()">Click for data</button>
+<div class="example-container">
+    <h2>To do</h2>
+    <h3>{{ total(transactions) | currency:'USD'}}</h3>
+  <div
+      cdkDropList
+      #transactionList="cdkDropList"
+      [cdkDropListData]="transactions"
+      [cdkDropListConnectedTo]="[foodList,dateList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of transactions" cdkDrag>
+        {{item.description}}
+        {{item.amount | currency:'USD' }}
+      </div>
+  </div>
+</div>
 
-<ng-container *ngFor="let transaction of transactions">
+<div class="example-container">
+    <h2>Food</h2>
+    <h3>{{ total(this.food) | currency:'USD'}}</h3>
+  
+    <div
+      cdkDropList
+      #foodList="cdkDropList"
+      [cdkDropListData]="food"
+      [cdkDropListConnectedTo]="[transactionList,dateList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of food" cdkDrag>
+          {{item.description}}
+          {{item.amount | currency:'USD' }}
+      </div>
+    </div>
+</div>
+
+<div class="example-container">
+    <h2>Dates</h2>
+    <h3>{{ total(this.date) | currency:'USD' }}</h3>
+  
+    <div
+      cdkDropList
+      #dateList="cdkDropList"
+      [cdkDropListData]="date"
+      [cdkDropListConnectedTo]="[transactionList,foodList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of date" cdkDrag>
+          {{item.description}}
+          {{item.amount | currency:'USD' }}
+      </div>
+    </div>
+</div>
+
+<!-- <ng-container *ngFor="let transaction of transactions">
     <div>{{ transaction.description }}</div>
     <div>{{ transaction.amount }}</div>
     <br/>
-</ng-container>
+</ng-container> -->
 <router-outlet></router-outlet>
