@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { DataLayerService } from './services/data-layer.service';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {MatButtonModule} from '@angular/material';
+
 
 @Component({
   selector: 'app-root',
@@ -16,6 +18,11 @@ export class AppComponent {
   constructor(private dataLayerService: DataLayerService) {
     this.getDataFromService();
   }
+
+  get saved() {
+    return this.dataLayerService.isSaved;
+  }
+  
 
 
   getDataFromService() {
@@ -47,6 +54,11 @@ export class AppComponent {
   saveTotals() {
     // get the totals and save them
     console.log('saving totals');
-    this.dataLayerService.saveData({});
+    const data = {
+      food: this.total(this.food),
+      date: this.total(this.date),
+      uncategorized: this.total(this.transactions)
+    }
+    this.dataLayerService.saveData(data);
   }
 }

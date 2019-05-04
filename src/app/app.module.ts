@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule, MatDialogModule, MatButtonModule } from '@angular/material'
 
 @NgModule({
   declarations: [
@@ -16,6 +16,8 @@ import { MatButtonModule } from '@angular/material/button';
     AppRoutingModule,
     HttpClientModule,
     DragDropModule,
+    MatCardModule,
+    MatDialogModule,
     MatButtonModule
   ],
   providers: [],

@@ -7,7 +7,8 @@ import { getLocaleDateFormat } from '@angular/common';
 })
 export class DataLayerService {
   url = 'http://127.0.0.1:5000/getData';
-  postUrl = 'ttp://127.0.0.1:5000/save'
+  postUrl = 'http://127.0.0.1:5000/save';
+  isSaved = false;
 
   constructor(private http: HttpClient) { 
   }
@@ -17,6 +18,8 @@ export class DataLayerService {
   }
 
   saveData(data: any) {
-    this.http.post(this.postUrl, data);
+    this.http.post(this.postUrl, data).subscribe(res => {
+      this.isSaved = true;
+    });
   }
 }
