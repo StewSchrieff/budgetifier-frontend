@@ -43,4 +43,10 @@ export class AppComponent {
     });
     return sum;
   }
+
+  saveTotals() {
+    // get the totals and save them
+    console.log('saving totals');
+    this.dataLayerService.saveData({});
+  }
 }

@@ -5,6 +5,12 @@
   </h1>
 </div>
 
+<button mat-button
+ color="primary"
+ (click)="saveTotals()"
+>Save Totals</button>
+<br/>
+
 <div class="example-container">
     <h2>To do</h2>
     <h3>{{ total(transactions) | currency:'USD'}}</h3>
